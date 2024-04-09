@@ -6,7 +6,7 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 10:56:35 by ade-beco          #+#    #+#             */
-/*   Updated: 2024/04/09 10:58:29 by ade-beco         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:30:29 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SERVER_H
 
 # include <unistd.h>
+# include <signal.h>
 
 # include "../libft/libft.h"
 

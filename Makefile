@@ -6,7 +6,7 @@
 #    By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/07 15:13:16 by ade-beco          #+#    #+#              #
-#    Updated: 2024/04/09 11:29:13 by ade-beco         ###   ########.fr        #
+#    Updated: 2024/04/09 11:36:28 by ade-beco         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,26 +29,22 @@ INC_CLIENT		=		-I includes/$(CLIENT).h -I $(LIBFT_PATH)$(LIBFT).h
 INC_SERVER		=		-I includes/$(SERVER).h -I $(LIBFT_PATH)$(LIBFT).h
 CFLAGS			=		-Wall -Wextra -Werror
 
-all: 		$(OBJECTS_CLIENT) $(CLIENT)
+all: 		$(OBJECTS_CLIENT) $(CLIENT) $(OBJECTS_SERVER) $(SERVER)
 
 %.o:		%.c
-					@cc -Wall -Wextra -Werror -Imlx -c $< -o $(<:c=o)
+					@cc -Wall -Wextra -Werror -c $< -o $(<:c=o)
 
 $(CLIENT):	$(OBJECTS_CLIENT)
-					@echo "Compiling Libft..."
-					@make bonus -C $(LIBFT_PATH)
+					@make -C $(LIBFT_PATH)
 					@cp $(LIBFT_PATH)$(LIBFT) $(CLIENT)
-					@echo "OK !"
 					@echo "Compiling and Creating Minitalk Client..."
 					@ar -rcs $(CLIENT) $(OBJECTS_CLIENT)
 					@cc $(CLIENT) $(CFLAGS) $(INC_CLIENT) -o $(CLIENT)
 					@echo "OK !"
 
 $(SERVER):	$(OBJECTS_SERVER)
-					@echo "Compiling Libft..."
-					@make bonus -C $(LIBFT_PATH)
+					@make -C $(LIBFT_PATH)
 					@cp $(LIBFT_PATH)$(LIBFT) $(SERVER)
-					@echo "OK !"
 					@echo "Compiling and Creating Minitalk Server..."
 					@ar -rcs $(SERVER) $(OBJECTS_SERVER)
 					@cc $(SERVER) $(CFLAGS) $(INC_SERVER) -o $(SERVER)
@@ -62,7 +58,9 @@ clean:
 					@echo "OK !"
 
 fclean:			clean
-					@make fclean -C $(LIBFT_PATH)
+					@echo "Cleaning Libft..."
+					@rm -f $(LIBFT_PATH)$(LIBFT)
+					@echo "OK !"
 					@echo "Cleaning Minitalk..."
 					@rm -f $(CLIENT)
 					@rm -f $(SERVER)

@@ -6,16 +6,22 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 10:58:07 by ade-beco          #+#    #+#             */
-/*   Updated: 2024/04/09 11:28:25 by ade-beco         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:39:50 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/client.h"
+#include "../includes/client.h"
+
+void	error(char *error_msg)
+{
+	ft_printf("Error\n%s\n", error_msg);
+	exit(EXIT_FAILURE);
+}
 
 int	main(int argc, char *argv[])
 {
 	if (argc != 3)
-		return (0);
+		error("Arguments Error");
 	argv++;
-	return (1);
+	return (0);
 }

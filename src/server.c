@@ -6,7 +6,7 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 10:58:09 by ade-beco          #+#    #+#             */
-/*   Updated: 2024/04/09 14:59:51 by ade-beco         ###   ########.fr       */
+/*   Updated: 2024/04/10 13:02:46 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 void	sig_handler(int signal)
 {
-	static int bit;
-    static int i;
+	static unsigned char	char_bit[2];
 
-    if (signal == SIGUSR1)
-        i |= (0x01 << bit);
-    bit++;
-    if (bit == 8)
-    {
-        ft_printf("%c", i);
-        bit = 0;
-        i = 0;
-    }
+	if (!char_bit[1])
+		char_bit[1] = '0';
+	char_bit[0] |= (signal == SIGUSR1);
+	char_bit[1]++;
+	if (char_bit[1] == '8')
+	{
+		ft_printf("%c", char_bit[0]);
+		char_bit[1] = '0';
+		char_bit[0] = 0;
+	}
+	else
+		char_bit[0] <<= 1;
 }
 
 int	main(void)

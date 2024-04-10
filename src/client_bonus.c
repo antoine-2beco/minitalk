@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 10:58:07 by ade-beco          #+#    #+#             */
-/*   Updated: 2024/04/10 13:35:18 by ade-beco         ###   ########.fr       */
+/*   Updated: 2024/04/10 14:33:07 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/client.h"
+#include "../includes/client_bonus.h"
 
 void	send_signal(int pid, unsigned char c)
 {
@@ -31,19 +31,35 @@ void	send_signal(int pid, unsigned char c)
 	}
 }
 
+void	get_back(int signal, siginfo_t *info, void *context)
+{
+	(void)signal;
+	(void)info;
+	(void)context;
+	ft_printf("Message has been received by %i !\n", info->si_pid);
+	exit(1);
+}
+
 int	main(int argc, char *argv[])
 {
 	int					i;
 	int					pid;
+	struct sigaction	sa;
 
 	if (argc != 3)
 		exit(EXIT_FAILURE);
 	i = 0;
 	pid = atoi(argv[1]);
+	sa.sa_sigaction = get_back;
+	sa.sa_flags = SA_SIGINFO;
+	sigaction(SIGUSR1, &sa, NULL);
 	while (argv[2][i])
 	{
 		send_signal(pid, (unsigned char)(argv[2][i]));
 		i++;
 	}
+	send_signal(pid, (unsigned char)('\0'));
+	while (1)
+		pause();
 	return (0);
 }

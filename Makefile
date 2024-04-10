@@ -6,7 +6,7 @@
 #    By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/07 15:13:16 by ade-beco          #+#    #+#              #
-#    Updated: 2024/04/10 14:12:20 by ade-beco         ###   ########.fr        #
+#    Updated: 2024/04/10 14:34:07 by ade-beco         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,9 @@ OBJECTS_SERVER	=		$(SRCS_D_SERVER:.c=.o)
 OBJECTS_SERVER_B=		$(SRCS_D_SERVER_B:.c=.o)
 
 INC_CLIENT		=		-I includes/$(CLIENT).h -I $(LIBFT_PATH)$(LIBFT).h
+INC_CLIENT_B	=		-I includes/$(CLIENT_B).h -I $(LIBFT_PATH)$(LIBFT).h
 INC_SERVER		=		-I includes/$(SERVER).h -I $(LIBFT_PATH)$(LIBFT).h
+INC_SERVER_B	=		-I includes/$(SERVER_B).h -I $(LIBFT_PATH)$(LIBFT).h
 CFLAGS			=		-Wall -Wextra -Werror
 
 all: 		$(OBJECTS_CLIENT) $(CLIENT) $(OBJECTS_SERVER) $(SERVER)
@@ -66,7 +68,7 @@ $(CLIENT_B):	$(OBJECTS_CLIENT_B)
 					@cp $(LIBFT_PATH)$(LIBFT) $(CLIENT_B)
 					@echo "Compiling and Creating Minitalk Client Bonus..."
 					@ar -rcs $(CLIENT_B) $(OBJECTS_CLIENT_B)
-					@cc $(CLIENT_B) $(CFLAGS) $(INC_CLIENT) -o $(CLIENT_B)
+					@cc $(CLIENT_B) $(CFLAGS) $(INC_CLIENT_B) -o $(CLIENT_B)
 					@echo "OK !"
 
 $(SERVER_B):	$(OBJECTS_SERVER_B)
@@ -74,7 +76,7 @@ $(SERVER_B):	$(OBJECTS_SERVER_B)
 					@cp $(LIBFT_PATH)$(LIBFT) $(SERVER_B)
 					@echo "Compiling and Creating Minitalk Server Bonus..."
 					@ar -rcs $(SERVER_B) $(OBJECTS_SERVER_B)
-					@cc $(SERVER_B) $(CFLAGS) $(INC_SERVER) -o $(SERVER_B)
+					@cc $(SERVER_B) $(CFLAGS) $(INC_SERVER_B) -o $(SERVER_B)
 					@echo "OK !"
 
 clean:

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 10:58:09 by ade-beco          #+#    #+#             */
-/*   Updated: 2024/04/10 13:38:12 by ade-beco         ###   ########.fr       */
+/*   Updated: 2024/04/10 14:32:57 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/server.h"
+#include "../includes/server_bonus.h"
 
 void	sig_handler(int signal, siginfo_t *info, void *context)
 {
@@ -26,6 +26,8 @@ void	sig_handler(int signal, siginfo_t *info, void *context)
 	{
 		ft_printf("%c", char_bit[0]);
 		char_bit[1] = '0';
+		if (char_bit[0] == '\0')
+			kill(info->si_pid, SIGUSR1);
 		char_bit[0] = 0;
 	}
 	else

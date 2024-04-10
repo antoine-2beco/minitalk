@@ -6,7 +6,7 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 10:58:07 by ade-beco          #+#    #+#             */
-/*   Updated: 2024/04/10 12:30:20 by ade-beco         ###   ########.fr       */
+/*   Updated: 2024/04/10 13:35:18 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	send_signal(int pid, unsigned char c)
 
 int	main(int argc, char *argv[])
 {
-	int	i;
-	int	pid;
+	int					i;
+	int					pid;
 
 	if (argc != 3)
 		exit(EXIT_FAILURE);

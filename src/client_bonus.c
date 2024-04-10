@@ -6,7 +6,7 @@
 /*   By: ade-beco <ade-beco@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 10:58:07 by ade-beco          #+#    #+#             */
-/*   Updated: 2024/04/10 14:33:07 by ade-beco         ###   ########.fr       */
+/*   Updated: 2024/04/10 14:41:35 by ade-beco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	get_back(int signal, siginfo_t *info, void *context)
 	(void)info;
 	(void)context;
 	ft_printf("Message has been received by %i !\n", info->si_pid);
-	exit(1);
+	exit(EXIT_SUCCESS);
 }
 
 int	main(int argc, char *argv[])
